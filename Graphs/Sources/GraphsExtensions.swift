@@ -22,6 +22,25 @@ public protocol GraphData {
     var value: GraphDataValue { get }
 }
 
+/**
+ GraphKeyValueData simple data for 'Pie Graph' objects.
+ */
+struct GraphKeyValueData<T: Hashable, U: NumericType>: GraphData {
+    typealias GraphDataKey = T
+    typealias GraphDataValue = U
+    
+    private let _key: T
+    private let _value: U
+    
+    init(key: T, value: U) {
+        self._key = key
+        self._value = value
+    }
+    
+    var key: T { get{ return self._key } }
+    var value: U { get{ return self._value } }
+}
+
 
 /**
  Sequence<S: GraphData> -> 'Graph' object

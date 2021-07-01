@@ -24,13 +24,13 @@ public class GraphView<T: Hashable, U: NumericType>: UIView {
         self.graph = graph
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = .clear
         self.reloadData()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = .clear
         self.reloadData()
     }
     

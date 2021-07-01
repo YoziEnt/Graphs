@@ -25,6 +25,12 @@ class MultiBarGraphView<T: Hashable, U: NumericType>: UIView {
         )
         self.addSubview(self.scrollView)
     }
+    
+    required init?(coder: NSCoder) {
+        print("init(coder:) has not been implemented")
+        return nil
+    }
+    
 }
 
 struct MultiBarGraphViewConfig<T: NumericType> {

@@ -42,11 +42,11 @@ public struct BarGraphViewConfig {
     ) {
         self.barColor = (barColor ?? DefaultColorType.Bar.color()).matColor()
         self.textColor = textColor ?? DefaultColorType.BarText.color()
-        self.textFont = textFont ?? UIFont.systemFontOfSize(10.0)
+        self.textFont = textFont ?? UIFont.systemFont(ofSize: 10.0)
         self.barWidthScale = barWidthScale ?? 0.8
         self.zeroLineVisible = zeroLineVisible ?? true
         self.textVisible = textVisible ?? true
-        self.contentInsets = contentInsets ?? UIEdgeInsetsZero
+        self.contentInsets = contentInsets ?? .zero
     }
 }
 
@@ -63,11 +63,16 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
         self.graph = graph
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = .clear
         self.setNeedsDisplay()
     }
     
-    func setBarGraphViewConfig(config: BarGraphViewConfig?) {
+    required init?(coder: NSCoder) {
+        print("init(coder:) has not been implemented")
+        return nil
+    }
+    
+    func setBarGraphViewConfig(_ config: BarGraphViewConfig?) {
         
         self.config = config ?? BarGraphViewConfig()
         self.setNeedsDisplay()
@@ -82,8 +87,8 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
         )
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         guard let graph = self.graph else { return }
         
@@ -97,7 +102,7 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
         
         let zero = rect.size.height / CGFloat((max - min).floatValue()) * CGFloat(min.floatValue())
         
-        graph.units.enumerate().forEach({ (index, u) in
+        graph.units.enumerated().forEach({ (index, u) in
             
             switch self.config.barColor {
             case let .Mat(color):   color.setFill()
@@ -129,14 +134,14 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
             )
             path.fill()
             
-            if let str = self.graph?.graphTextDisplay()(unit: u, totalValue: total) {
+            if let str = self.graph?.graphTextDisplay()(u, total) {
                 
                 let attrStr = NSAttributedString.graphAttributedString(str, color: self.config.textColor, font: self.config.textFont)
                 
                 let size = attrStr.size()
                 
-                attrStr.drawInRect(
-                    CGRect(
+                attrStr.draw(
+                    in: CGRect(
                         origin: CGPoint(
                             x: sectionWidth * CGFloat(index) + rect.origin.x,
                             y: u.value >= U(0)

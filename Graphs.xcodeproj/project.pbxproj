@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3F8594268E1ED00066B28C /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F8593268E1ED00066B28C /* Package.swift */; };
 		E92069861CFC20840025DBC8 /* Graphs.h in Headers */ = {isa = PBXBuildFile; fileRef = E92069851CFC20840025DBC8 /* Graphs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E920698D1CFC20840025DBC8 /* Graphs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92069821CFC20840025DBC8 /* Graphs.framework */; };
 		E92069921CFC20840025DBC8 /* GraphsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92069911CFC20840025DBC8 /* GraphsTests.swift */; };
@@ -16,8 +17,6 @@
 		E96B3C5C1D011DC8006D5FD9 /* BarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B3C5B1D011DC8006D5FD9 /* BarGraphView.swift */; };
 		E97752211D095676008AB30A /* MultiBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97752201D095676008AB30A /* MultiBarGraphView.swift */; };
 		E984B7B21CFD282700E2C834 /* GraphsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984B7B11CFD282700E2C834 /* GraphsExtensions.swift */; };
-		E984B7B41CFD303000E2C834 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E984B7B31CFD303000E2C834 /* Nimble.framework */; };
-		E984B7B61CFD303C00E2C834 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E984B7B51CFD303C00E2C834 /* Quick.framework */; };
 		E9AF3B6F1D068A0E00F0B18B /* PieGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF3B6E1D068A0E00F0B18B /* PieGraphView.swift */; };
 		E9E79B191D10FAC60000FEE7 /* Graph.swift in Headers */ = {isa = PBXBuildFile; fileRef = E920699C1CFC20D00025DBC8 /* Graph.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9E79B1A1D10FAC60000FEE7 /* GraphView.swift in Headers */ = {isa = PBXBuildFile; fileRef = E955F4C81CFE73B6006E9D25 /* GraphView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD3F8593268E1ED00066B28C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		E92069821CFC20840025DBC8 /* Graphs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Graphs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92069851CFC20840025DBC8 /* Graphs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graphs.h; sourceTree = "<group>"; };
 		E92069871CFC20840025DBC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,8 +51,6 @@
 		E96B3C5B1D011DC8006D5FD9 /* BarGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarGraphView.swift; sourceTree = "<group>"; };
 		E97752201D095676008AB30A /* MultiBarGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiBarGraphView.swift; sourceTree = "<group>"; };
 		E984B7B11CFD282700E2C834 /* GraphsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphsExtensions.swift; sourceTree = "<group>"; };
-		E984B7B31CFD303000E2C834 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		E984B7B51CFD303C00E2C834 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		E9AF3B6E1D068A0E00F0B18B /* PieGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E984B7B61CFD303C00E2C834 /* Quick.framework in Frameworks */,
-				E984B7B41CFD303000E2C834 /* Nimble.framework in Frameworks */,
 				E920698D1CFC20840025DBC8 /* Graphs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +73,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD3B9630268E2FA300CEBB24 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E92069851CFC20840025DBC8 /* Graphs.h */,
+				E920699C1CFC20D00025DBC8 /* Graph.swift */,
+				E955F4C81CFE73B6006E9D25 /* GraphView.swift */,
+				E96B3C5B1D011DC8006D5FD9 /* BarGraphView.swift */,
+				E9428EEE1D0168F400DBFBD9 /* LineGraphView.swift */,
+				E9AF3B6E1D068A0E00F0B18B /* PieGraphView.swift */,
+				E97752201D095676008AB30A /* MultiBarGraphView.swift */,
+				E984B7B11CFD282700E2C834 /* GraphsExtensions.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		CD3B9631268E2FB100CEBB24 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E92069911CFC20840025DBC8 /* GraphsTests.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		E92069781CFC20840025DBC8 = {
 			isa = PBXGroup;
 			children = (
+				CD3F8593268E1ED00066B28C /* Package.swift */,
 				E92069841CFC20840025DBC8 /* Graphs */,
 				E92069901CFC20840025DBC8 /* GraphsTests */,
 				E955F4CA1CFE77D1006E9D25 /* Frameworks */,
@@ -99,15 +119,8 @@
 		E92069841CFC20840025DBC8 /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
+				CD3B9630268E2FA300CEBB24 /* Sources */,
 				E92069871CFC20840025DBC8 /* Info.plist */,
-				E92069851CFC20840025DBC8 /* Graphs.h */,
-				E920699C1CFC20D00025DBC8 /* Graph.swift */,
-				E955F4C81CFE73B6006E9D25 /* GraphView.swift */,
-				E96B3C5B1D011DC8006D5FD9 /* BarGraphView.swift */,
-				E9428EEE1D0168F400DBFBD9 /* LineGraphView.swift */,
-				E9AF3B6E1D068A0E00F0B18B /* PieGraphView.swift */,
-				E97752201D095676008AB30A /* MultiBarGraphView.swift */,
-				E984B7B11CFD282700E2C834 /* GraphsExtensions.swift */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -115,7 +128,7 @@
 		E92069901CFC20840025DBC8 /* GraphsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E92069911CFC20840025DBC8 /* GraphsTests.swift */,
+				CD3B9631268E2FB100CEBB24 /* Sources */,
 				E92069931CFC20840025DBC8 /* Info.plist */,
 			);
 			path = GraphsTests;
@@ -124,8 +137,6 @@
 		E955F4CA1CFE77D1006E9D25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E984B7B51CFD303C00E2C834 /* Quick.framework */,
-				E984B7B31CFD303000E2C834 /* Nimble.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 				E9428EEF1D0168F400DBFBD9 /* LineGraphView.swift in Sources */,
 				E920699D1CFC20D00025DBC8 /* Graph.swift in Sources */,
 				E955F4C91CFE73B6006E9D25 /* GraphView.swift in Sources */,
+				CD3F8594268E1ED00066B28C /* Package.swift in Sources */,
 				E9AF3B6F1D068A0E00F0B18B /* PieGraphView.swift in Sources */,
 				E96B3C5C1D011DC8006D5FD9 /* BarGraphView.swift in Sources */,
 				E97752211D095676008AB30A /* MultiBarGraphView.swift in Sources */,

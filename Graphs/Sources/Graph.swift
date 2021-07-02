@@ -274,13 +274,7 @@ internal struct MultiBarGraph<T: Hashable, U: NumericType>: GraphBase {
     var units: [[GraphUnit<T, U>]]
     var range: GraphRange<U>
     var textDisplayHandler: GraphTextDisplayHandler?
-    
-    func graphTextDisplay() -> GraphTextDisplayHandler {
-        if let f = textDisplayHandler {
-            return f
-        }
-        return { (unit, total) -> String? in "\(unit.value)" }
-    }
+
 }
 
 internal struct LineGraph<T: Hashable, U: NumericType>: GraphBase {
@@ -307,13 +301,7 @@ internal struct LineGraph<T: Hashable, U: NumericType>: GraphBase {
     func view(_ frame: CGRect) -> GraphView? {
         return LineGraphView(frame: frame, graph: self)
     }
-    
-    func graphTextDisplay() -> GraphTextDisplayHandler {
-        if let f = textDisplayHandler {
-            return f
-        }
-        return { (unit, total) -> String? in "\(unit.value)" }
-    }
+
 }
 
 internal struct PieGraph<T: Hashable, U: NumericType>: GraphBase {
@@ -337,16 +325,7 @@ internal struct PieGraph<T: Hashable, U: NumericType>: GraphBase {
     func view(_ frame: CGRect) -> GraphView? {
         return PieGraphView(frame: frame, graph: self)
     }
-    
-    func graphTextDisplay() -> GraphTextDisplayHandler {
-        if let f = textDisplayHandler {
-            return f
-        }
-        return { (unit, total) -> String? in
-            let f = unit.value.floatValue() / total.floatValue()
-            return "\(unit.value)" + " : " + String(format: "%.0f%%", f * 100.0)
-        }
-    }
+
 }
 
 

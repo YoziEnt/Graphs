@@ -134,7 +134,7 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
             )
             path.fill()
             
-            if let str = self.graph?.graphTextDisplay()(u, total) {
+            if let str = self.graph?.textDisplayHandler?(u, total) {
                 
                 let attrStr = NSAttributedString.graphAttributedString(str, color: self.config.textColor, font: self.config.textFont)
                 

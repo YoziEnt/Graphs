@@ -13,20 +13,23 @@ public struct PieGraphViewConfig {
     public var pieColors: [UIColor]?
     public var textColor: UIColor
     public var textFont: UIFont
-    public var isDounut: Bool
     public var contentInsets: UIEdgeInsets
+    public var donutRadiusRatio: CGFloat
+    public var fractionsIndentInRadians: Double
     
     public init(
         pieColors: [UIColor]? = nil,
         textColor: UIColor? = nil,
         textFont: UIFont? = nil,
-        isDounut: Bool = false,
+        donutRadiusRatio: CGFloat = 0.0,
+        fractionsIndentInRadians: Double = 0,
         contentInsets: UIEdgeInsets? = nil
     ) {
         self.pieColors = pieColors
         self.textColor = textColor ?? DefaultColorType.PieText.color()
         self.textFont = textFont ?? UIFont.systemFont(ofSize: 10.0)
-        self.isDounut = isDounut
+        self.donutRadiusRatio = ((donutRadiusRatio < 0) || (donutRadiusRatio > 1)) ? 0 : donutRadiusRatio
+        self.fractionsIndentInRadians = fractionsIndentInRadians
         self.contentInsets = contentInsets ?? .zero
     }
     
@@ -98,23 +101,43 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
         var startAngle = -Double.pi / 2.0
 
         percentages.enumerated().forEach { (index, f) in
-            let endAngle = startAngle + Double.pi * 2.0 * f
+            let endAngle = startAngle + Double.pi * 2.0 * f - config.fractionsIndentInRadians
             context?.move(to: CGPoint(x: x, y: y))
-            context?.addArc(center: CGPoint(x: x, y: y), radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: false)
+            context?.addArc(center: CGPoint(x: x, y: y),
+                            radius: radius,
+                            startAngle: CGFloat(startAngle + config.fractionsIndentInRadians),
+                            endAngle: CGFloat(endAngle),
+                            clockwise: false)
 
-            if self.config.isDounut {
-                context?.addArc(center: CGPoint(x: x, y: y), radius: radius / 2, startAngle: CGFloat(endAngle), endAngle: CGFloat(startAngle), clockwise: true)
+            if config.donutRadiusRatio != 0 {
+                context?.addArc(center: CGPoint(x: x, y: y),
+                                radius: radius * config.donutRadiusRatio,
+                                startAngle: CGFloat(endAngle),
+                                endAngle: CGFloat(startAngle + config.fractionsIndentInRadians),
+                                clockwise: true)
             }
             
             context?.setFillColor(colors[index].cgColor)
             context?.closePath()
             context?.fillPath()
-            startAngle = endAngle
+            startAngle = endAngle + config.fractionsIndentInRadians
+        }
+        
+        if config.donutRadiusRatio != 0 {
+            context?.addArc(center: CGPoint(x: x, y: y),
+                            radius: radius * (1 - config.donutRadiusRatio),
+                            startAngle: CGFloat(-Double.pi),
+                            endAngle: CGFloat(Double.pi),
+                            clockwise: false)
+            context?.setFillColor(UIColor.white.cgColor)
+            context?.closePath()
+            context?.fillPath()
+            
         }
         
         zip(graph.units, centers).forEach { (u, center) in
             
-            guard let str = self.graph?.graphTextDisplay()(u, total) else {
+            guard let str = self.graph?.textDisplayHandler?(u, total) else {
                 return
             }
             

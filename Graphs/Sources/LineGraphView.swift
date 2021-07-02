@@ -104,7 +104,7 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         
         zip(lineGraph.units, ps).forEach { (u, p) in
             
-            guard let str = self.graph?.graphTextDisplay()(u, total) else {
+            guard let str = self.graph?.textDisplayHandler?(u, total) else {
                 return
             }
             

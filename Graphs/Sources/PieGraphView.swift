@@ -129,10 +129,8 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
                             startAngle: CGFloat(-Double.pi),
                             endAngle: CGFloat(Double.pi),
                             clockwise: false)
-            context?.setFillColor(UIColor.clear.cgColor)
+            context?.clip()
             context?.closePath()
-            context?.fillPath()
-            
         }
         
         zip(graph.units, centers).forEach { (u, center) in

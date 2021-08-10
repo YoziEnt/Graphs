@@ -111,7 +111,7 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
 
             if config.donutRadiusRatio != 0 {
                 context?.addArc(center: CGPoint(x: x, y: y),
-                                radius: radius * config.donutRadiusRatio,
+                                radius: radius * (1 - config.donutRadiusRatio),
                                 startAngle: CGFloat(endAngle),
                                 endAngle: CGFloat(startAngle + config.fractionsIndentInRadians),
                                 clockwise: true)
@@ -121,16 +121,6 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
             context?.closePath()
             context?.fillPath()
             startAngle = endAngle + config.fractionsIndentInRadians
-        }
-        
-        if config.donutRadiusRatio != 0 {
-            context?.addArc(center: CGPoint(x: x, y: y),
-                            radius: radius * (1 - config.donutRadiusRatio),
-                            startAngle: CGFloat(-Double.pi),
-                            endAngle: CGFloat(Double.pi),
-                            clockwise: false)
-            context?.clip()
-            context?.closePath()
         }
         
         zip(graph.units, centers).forEach { (u, center) in
